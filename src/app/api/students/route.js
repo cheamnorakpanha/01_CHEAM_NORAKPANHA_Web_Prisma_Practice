@@ -20,33 +20,33 @@ export async function POST(request) {
 }
 
 // Get all students
-// export async function GET() {
-//     const student = await prisma.studentTable.findMany();
-
-//     return NextResponse.json({
-//         success: true,
-//         message: "Students retrieved successfully.",
-//         payload: student,
-//     })
-// }
-
-// Search student by name
-export async function GET(request) {
-    const {searchParams } = new URL(request.url);
-    const name = searchParams.get("name");
-    const searchByName = await prisma.studentTable.findMany({
-        where: {
-            name: {
-                contains: name,
-                mode: "insensitive"
-            }
-        }
-    })
+export async function GET() {
+    const student = await prisma.studentTable.findMany();
 
     return NextResponse.json({
         success: true,
-        status: 200,
-        message: "Search student successfully.",
-        payload: searchByName
+        message: "Students retrieved successfully.",
+        payload: student,
     })
 }
+
+// Search student by name
+// export async function GET(request) {
+//     const {searchParams } = new URL(request.url);
+//     const name = searchParams.get("name");
+//     const searchByName = await prisma.studentTable.findMany({
+//         where: {
+//             name: {
+//                 contains: name,
+//                 mode: "insensitive"
+//             }
+//         }
+//     })
+
+//     return NextResponse.json({
+//         success: true,
+//         status: 200,
+//         message: "Search student successfully.",
+//         payload: searchByName
+//     })
+// }
